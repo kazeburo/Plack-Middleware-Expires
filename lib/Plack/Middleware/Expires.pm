@@ -78,8 +78,8 @@ sub call {
         return if ! $self->expires;
         my $type_match = $self->content_type;
         return if ! defined $type_match;
+        my @type_match = (ref $type_match && ref $type_match eq 'ARRAY') ? @{$type_match} : ($type_match);
 
-        
         # expires works only for successful response
         return if HTTP::Status::is_error( $res->[0] );
 
@@ -90,11 +90,19 @@ sub call {
         my $type = Plack::Util::header_get($res->[1], 'Content-Type');
         return if ! defined $type;
         my $type_check;
-        if ( ref $type_match && ref $type_match eq 'Regexp' ) {
-            $type_check =  ( $type =~ m!$type_match! ) ? 1 : 0;
-        }
-        else {
-            $type_check = ( lc $type eq lc $type_match ) ? 1 : 0;
+        for ( @type_match ) {
+            if ( ref $_ && ref $_ eq 'Regexp' ) {
+                if ( $type =~ m!$_! ) {
+                    $type_check = 1;
+                    last;
+                }
+            }
+            else {
+                if ( lc $type eq lc $_ ) {
+                    $type_check = 1;
+                    last;
+                }
+            }
         }
         return if ! $type_check;
 
@@ -140,20 +148,23 @@ Plack::Middleware::Expires - mod_expires for plack
 
 Plack::Middleware::Expires is Apache's mod_expires for Plack.
 This middleware controls the setting of Expires HTTP header and the max-age directive of the Cache-Control HTTP header in server responses.
-Note1: Expires works only for successful response
-Note2: If exists Expires HTTP header already, this middleware does not override.
+Note: Expires works only for successful response and If exists Expires HTTP header already, this middleware does not override.
 
 =head1 CONFIGURATIONS
 
 =over 4
 
-= item content_type
+=item content_type
 
-Specify the server response content_type,
+  content_type => qr!^image!,
+  content_type => 'text/css',
+  content_type => [ 'text/css', 'application/javascript', qr!^image/! ]
 
-= item Expires
+Content-Type header to apply Expires
 
-almost same as Apache's mod_expires expires format.
+=item Expires
+
+Same format as the Apache mod_expires
 
   expires => 'M3600' # last_modified + 1 hour
   expires => 'A86400' # access + 1 day
