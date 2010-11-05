@@ -1,4 +1,7 @@
 Revision history for Perl extension Plack::Middleware::Expires
 
+0.02    Fri Nov 05 11:06:24 2010
+        - added Try::Tiny to requires
+
 0.01    Sat Jul 17 00:02:35 2010
         - original version

@@ -7,6 +7,7 @@ all_from 'lib/Plack/Middleware/Expires.pm';
 tests 't/*.t';
 author_tests 'xt';
 
+requires 'Try::Tiny', 0.06;
 requires 'Plack', 0.9937;
 requires 'LWP::UserAgent';
 requires 'parent';
