@@ -2,6 +2,11 @@ Revision history for Perl extension Plack::Middleware::Expires
 
 {{$NEXT}}
 
+0.04 2013-08-23T05:55:00Z
+
+        - requires 'HTTP::Date' and 'HTTP::Status'. no requires LWP
+        - minil migrate
+
 0.03    Thu Nov 11 11:11:11 2010
         - remove time sensitive Expires header tests
 

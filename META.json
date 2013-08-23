@@ -67,7 +67,7 @@
          "web" : "https://github.com/kazeburo/Plack-Middleware-Expires"
       }
    },
-   "version" : "0.03",
+   "version" : "0.04",
    "x_contributors" : [
       "Masahiro Nagano <kazeburo@gmail.com>"
    ]
