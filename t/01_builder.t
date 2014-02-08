@@ -1,5 +1,5 @@
 use strict;
-use Test::More tests => 7;
+use Test::More tests => 9;
 
 use Plack::Builder;
 use Plack::Test;
@@ -60,3 +60,18 @@ eval {
     };
 };
 ok($@);
+
+my $app4 = builder {
+    enable 'Expires', content_type => sub {defined $_[0]->{"HTTP_X_HOGE"}}, expires => 'A3600';
+    sub { [200, [ 'Content-Type' => 'text/plain' ], [ "Hello World" ]] };
+};
+
+test_psgi
+    app => $app4,
+    client => sub {
+          my $cb = shift;
+          my $req = HTTP::Request->new(GET => "http://localhost/", ["X-Hoge" => "yes"]);
+          my $res = $cb->($req);
+          like( $res->header('Expires'), qr/GMT/ );
+          like( $res->header('Cache-Control'), qr/max-age=3600/ );
+};

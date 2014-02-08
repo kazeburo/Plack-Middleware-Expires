@@ -91,9 +91,13 @@ sub call {
         return if ! defined $type;
         my $type_check;
         for ( @type_match ) {
-            if ( ref $_ && ref $_ eq 'Regexp' ) {
-                if ( $type =~ m!$_! ) {
+            if (my $ref = ref $_) {
+                if ($ref eq 'Regexp' && $type =~ m!$_!) {
                     $type_check = 1;
+                    last;
+                }
+                elsif ($ref eq 'CODE') {
+                    $type_check = $_->($env);
                     last;
                 }
             }
