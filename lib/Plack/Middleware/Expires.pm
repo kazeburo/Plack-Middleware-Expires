@@ -9,7 +9,7 @@ use Plack::Util::Accessor qw( content_type expires );
 use HTTP::Status qw//;
 use HTTP::Date;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 sub calc_expires {
     my ( $expires, $modified, $access ) = @_;

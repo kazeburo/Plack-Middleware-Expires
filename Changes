@@ -2,6 +2,10 @@ Revision history for Perl extension Plack::Middleware::Expires
 
 {{$NEXT}}
 
+0.05 2014-02-10T04:04:58Z
+
+        - accept code ref for content_type attribut (Thanks leedo)
+
 0.04 2013-08-23T05:55:00Z
 
         - requires 'HTTP::Date' and 'HTTP::Status'. no requires LWP
