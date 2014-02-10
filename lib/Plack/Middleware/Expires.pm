@@ -166,6 +166,11 @@ Note: Expires works only for successful response and If exists Expires HTTP head
 
 Content-Type header to apply Expires
 
+also C<content_type> accept CodeRef
+
+  content_type => sub { my $env = shift; return 1 if $env->{..} }
+
+
 =item Expires
 
 Same format as the Apache mod_expires
