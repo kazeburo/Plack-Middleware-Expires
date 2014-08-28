@@ -69,7 +69,7 @@
          "web" : "https://github.com/kazeburo/Plack-Middleware-Expires"
       }
    },
-   "version" : "0.05",
+   "version" : "0.06",
    "x_contributors" : [
       "Lee Aylward <lee@laylward.com>",
       "Kjetil Kjernsmo <kjetil@kjernsmo.net>",

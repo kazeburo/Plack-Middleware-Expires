@@ -21,7 +21,7 @@ This middleware controls the setting of Expires HTTP header and the max-age dire
 **Note**:
 
 - Expires works only for successful response,
-- If an Expires HTTP header exists already, it will not be overriden by this middleware.
+- If an Expires HTTP header exists already, it will not be overridden by this middleware.
 
 # CONFIGURATIONS
 

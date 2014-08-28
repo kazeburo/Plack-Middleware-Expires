@@ -2,6 +2,10 @@ Revision history for Perl extension Plack::Middleware::Expires
 
 {{$NEXT}}
 
+0.06 2014-08-28T07:30:17Z
+
+        - Improve the documentationImprove the documentation. (Thanks kjetilk)
+
 0.05 2014-02-10T04:04:58Z
 
         - accept code ref for content_type attribut (Thanks leedo)
