@@ -13,13 +13,15 @@ Plack::Middleware::Expires - mod\_expires for plack
         $app;
     }
 
-
-
 # DESCRIPTION
 
 Plack::Middleware::Expires is Apache's mod\_expires for Plack.
 This middleware controls the setting of Expires HTTP header and the max-age directive of the Cache-Control HTTP header in server responses.
-Note: Expires works only for successful response and If exists Expires HTTP header already, this middleware does not override.
+
+**Note**:
+
+- Expires works only for successful response,
+- If an Expires HTTP header exists already, it will not be overriden by this middleware.
 
 # CONFIGURATIONS
 
@@ -34,8 +36,6 @@ Note: Expires works only for successful response and If exists Expires HTTP head
     also `content_type` accept CodeRef
 
         content_type => sub { my $env = shift; return 1 if $env->{..} }
-
-
 
 - Expires
 
@@ -52,7 +52,7 @@ Masahiro Nagano <kazeburo {at} gmail.com>
 
 # SEE ALSO
 
-[http://httpd.apache.org/docs/2.2/en/mod/mod\_expires.html](http://httpd.apache.org/docs/2.2/en/mod/mod\_expires.html)
+[http://httpd.apache.org/docs/2.2/en/mod/mod\_expires.html](http://httpd.apache.org/docs/2.2/en/mod/mod_expires.html)
 
 # LICENSE
 
