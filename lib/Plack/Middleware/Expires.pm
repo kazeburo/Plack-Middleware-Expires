@@ -52,7 +52,7 @@ sub calc_expires {
         }
     }
     else {
-        Carp::croak("unkown expires format: '$expires'");
+        Carp::croak("unknown expires format: '$expires'");
     }
     $expires_sec = 2147483647 if $expires_sec > 2147483647; #year 2039
     return $expires_sec;
